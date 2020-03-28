@@ -3,6 +3,8 @@ from twilio.rest import Client
 import requests
 import config
 
+print("Script is running")
+
 
 def scrape(url, text):
     page = requests.get(url).content
