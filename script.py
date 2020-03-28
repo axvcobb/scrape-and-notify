@@ -24,8 +24,7 @@ def notify():
         )
 
 
-a = scrape(config.scrape_url, config.scrape_text)
-
-
-if a:
+# If scrape doesn't find the text, it returns an empty array.
+# If it finds something, it triggers the notify() function
+if scrape(config.scrape_url, config.scrape_text):
     notify()
