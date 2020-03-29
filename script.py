@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from twilio.rest import Client
+import Mailchimp
 import requests
 import config
 
@@ -27,4 +28,6 @@ def notify():
 # If scrape doesn't find the text, it returns an empty array.
 # If it finds something, it triggers the notify() function
 if scrape(config.scrape_url, config.scrape_text):
+    mc = Mailchimp.Mailchimp(config.mailchimp_key)
+    mc.trigger_email(config.mailchimp_url, config.mailchimp_email)
     notify()
