@@ -5,6 +5,10 @@ import requests
 import config
 
 
+# Searches the given 'url' page for the 'text'
+# Returns an empty array if the 'text' isn't found
+# If the 'text' is found, it returns an array with
+#   that many occurrences
 def scrape(url, text):
     page = requests.get(url).content
     soup = BeautifulSoup(page, "html.parser")
@@ -12,6 +16,7 @@ def scrape(url, text):
     return soup.find_all(string=text)
 
 
+# Fires off a Twilio text and triggers a Mailchimp email
 def notify():
     Twilio(config.twilio_sid, config.twilio_auth).\
         send_text(config.twilio_body, config.twilio_from, config.twilio_to)
